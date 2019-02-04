@@ -1,0 +1,57 @@
+<?php
+/**
+ * @file
+ * Form alter.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+function search_dropdown_form_alter(&$form, FormStateInterface $form_state, $form_id){
+  //  Make an array of all of the Form IDs that should call this code.
+  //  the form #id can be found through inspecting the markup
+  $formIDs = array('search-block-form');
+
+  //  Get the current page to see if we're on the site search page.
+  //  We'll set a different default value in the dropdown if this is the case.
+  $currentPage = \Drupal::service('path.current')->getPath();
+
+  if($currentPage == "/search/node"){
+    $defaultValue = "This Site";
+  }
+  else{
+    $defaultValue = "Catalog";
+  }
+
+  /**
+   * Apply the form_alter to a specific form #id -
+   * just add the form ID you want to alter to the array above.
+   */
+  if  (in_array($form['#id'], $formIDs))
+  {
+    // Add dropdown
+    $form['dropdown'] = [
+      '#type' => 'select',
+      '#title' => t('Search Options'),
+      '#title_display' => 'invisible',
+      '#id' => 'search-options',
+      '#name' => 'search-options',
+      '#value' => $defaultValue,
+      '#options' => [
+        'Catalog' => t('Catalog'),
+        'Digital Collections' => t('Digital Collections'),
+        'This Site' => t('This Site'),
+        'History Site' => t('History Site'),
+        'Kids Site' => t('Kids Site'),
+        'Teen Site' => t('Teen Site'),
+      ],
+      '#default_value' => 0,
+      '#description' => t('What would you like to search?'),
+      '#weight' => -1,
+    ];
+
+    /**
+     * Include js defined in search_dropdown.libraries.yml
+     */
+    $form['#attached']['library'][] = 'search_dropdown/search_dropdown.enable';
+  }
+}

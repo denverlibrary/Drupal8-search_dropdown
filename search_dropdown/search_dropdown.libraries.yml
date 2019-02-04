@@ -1,0 +1,7 @@
+search_dropdown.enable:
+  version: VERSION
+  js:
+    js/search_dropdown.js: {}
+  dependencies:
+    - core/jquery
+

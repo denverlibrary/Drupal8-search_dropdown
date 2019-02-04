@@ -1,0 +1,6 @@
+name: Search Dropdown
+type: module
+description: 'Add a dropdown for all our different searches and route the search to correct form action.'
+package: Custom
+version: 8.x
+core: 8.x
