@@ -27,4 +27,4 @@ case 'Machine Name':
 So search_dropdown.module builds the dropdown box, search_dropdown.js sends them to the different search pages when the user clicks the "Search" button or presses enter. 
 
 
-All you should need to do is put this module in your sites/[Your site]/modules/custom director. Modify the lines listed above to fit the needs of your site and enable the module. The dropdown should work just like ours.
+All you should need to do is put this module in your sites/[Your site]/modules/custom directory. Modify the lines listed above to fit the needs of your site and enable the module. The dropdown should work just like ours.
